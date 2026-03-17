@@ -7,15 +7,15 @@ const posts = await getPublishedBlogPosts();
 ---
 
 <BaseLayout
-  title="Blog"
-  description="Notes and essays published on Doriath."
+  title="博客"
+  description="发布在 doriath 上的笔记与文章。"
 >
   <section class="page-hero panel">
-    <p class="eyebrow">Blog</p>
-    <h1>Markdown-first writing.</h1>
+    <p class="eyebrow">博客</p>
+    <h1>以 Markdown 为先的写作。</h1>
     <p class="lede">
-      Posts are authored in <code>src/content/blog</code> and compiled through Astro content
-      collections at build time.
+      文章写在 <code>src/content/blog</code> 中，并在构建时通过 Astro content
+      collections 编译。
     </p>
   </section>
 
@@ -33,4 +33,3 @@ const posts = await getPublishedBlogPosts();
     </ul>
   </section>
 </BaseLayout>
-

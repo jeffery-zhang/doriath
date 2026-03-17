@@ -1,8 +1,8 @@
 export const SITE_TITLE = "Jeffery Zhang";
 export const SITE_DESCRIPTION =
-  "Personal site for writing, experiments, and durable notes about building on the web.";
+  "一个用于写作、实验和长期留存笔记的个人站点。";
 
-const dateFormatter = new Intl.DateTimeFormat("en", { dateStyle: "long" });
+const dateFormatter = new Intl.DateTimeFormat("zh-CN", { dateStyle: "long" });
 
 export function formatDate(date: Date) {
   return dateFormatter.format(date);
@@ -15,4 +15,3 @@ export function withBase(path: string) {
   const normalizedPath = path.replace(/^\/+/, "");
   return new URL(normalizedPath, `https://example.com${base}`).pathname;
 }
-

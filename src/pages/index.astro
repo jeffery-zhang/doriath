@@ -7,36 +7,33 @@ const posts = (await getPublishedBlogPosts()).slice(0, 3);
 ---
 
 <BaseLayout
-  description="Jeffery Zhang's personal website, home for essays, project notes, and experiments on the web."
+  description="Jeffery Zhang 的个人网站，收录随笔、项目笔记，以及关于 Web 的实验。"
 >
   <section class="hero panel">
-    <p class="eyebrow">Personal website</p>
-    <h1>Building a quiet corner of the internet for durable work.</h1>
+    <p class="eyebrow">个人网站</p>
+    <h1>在互联网上，为能经得起时间的工作留一处安静角落。</h1>
     <p class="lede">
-      Doriath is where Jeffery Zhang publishes writing, shares experiments, and keeps a
-      public record of ideas worth revisiting.
+      doriath 是 Jeffery Zhang 发布文章、分享实验，并把值得回看的想法公开存档的地方。
     </p>
     <div class="hero-actions">
-      <a class="button button-primary" href={withBase("/blog/")}>Read the blog</a>
-      <a class="button" href={withBase("/about/")}>About Jeffery</a>
+      <a class="button button-primary" href={withBase("/blog/")}>阅读博客</a>
+      <a class="button" href={withBase("/about/")}>关于 Jeffery</a>
     </div>
   </section>
 
   <section class="home-grid">
     <article class="panel">
-      <p class="eyebrow">What lives here</p>
-      <h2>Writing that ages well</h2>
+      <p class="eyebrow">这里有什么</p>
+      <h2>经得起时间的写作</h2>
       <p>
-        The site is set up for source-authored pages and Markdown posts, so long-form notes
-        can stay in the repo beside the code that publishes them.
+        这个站点同时支持直接在源码中编写页面和用 Markdown 写博客，让长文笔记能和发布它们的代码一起留在仓库里。
       </p>
     </article>
     <article class="panel">
-      <p class="eyebrow">Current stack</p>
-      <h2>Static, typed, and deployable on GitHub Pages</h2>
+      <p class="eyebrow">当前技术栈</p>
+      <h2>静态、类型安全，并可部署到 GitHub Pages</h2>
       <p>
-        Astro powers the pages, content collections compile the blog, and GitHub Actions
-        ships the generated site to Pages with a custom domain.
+        页面由 Astro 驱动，博客通过 content collections 编译，GitHub Actions 将生成后的站点发布到 Pages，并挂上自定义域名。
       </p>
     </article>
   </section>
@@ -44,10 +41,10 @@ const posts = (await getPublishedBlogPosts()).slice(0, 3);
   <section class="panel">
     <div class="section-heading">
       <div>
-        <p class="eyebrow">Latest writing</p>
-        <h2>Recent posts</h2>
+        <p class="eyebrow">最新写作</p>
+        <h2>最近文章</h2>
       </div>
-      <a class="section-link" href={withBase("/blog/")}>View all posts</a>
+      <a class="section-link" href={withBase("/blog/")}>查看全部文章</a>
     </div>
     <ul class="post-list" role="list">
       {posts.map((post) => (
@@ -62,4 +59,3 @@ const posts = (await getPublishedBlogPosts()).slice(0, 3);
     </ul>
   </section>
 </BaseLayout>
-

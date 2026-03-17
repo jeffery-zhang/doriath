@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
-  <title id="title">Doriath social card</title>
-  <desc id="desc">Warm editorial card for the Doriath personal website.</desc>
+  <title id="title">doriath 分享卡片</title>
+  <desc id="desc">doriath 个人网站的暖色编辑风分享卡片。</desc>
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#f4efe3" />
@@ -11,11 +11,10 @@
   <circle cx="988" cy="124" r="144" fill="#8a4b2b" fill-opacity="0.12" />
   <circle cx="154" cy="544" r="184" fill="#8a4b2b" fill-opacity="0.1" />
   <g fill="#1c1f1a">
-    <text x="96" y="206" font-family="'Palatino Linotype', 'Book Antiqua', serif" font-size="38" letter-spacing="8">JEFFERY ZHANG</text>
-    <text x="96" y="336" font-family="'Palatino Linotype', 'Book Antiqua', serif" font-size="104" font-weight="700">Doriath</text>
-    <text x="96" y="412" font-family="'Palatino Linotype', 'Book Antiqua', serif" font-size="34" fill="#5b5f56">
-      A personal site for writing, experiments, and durable notes.
+    <text x="96" y="206" font-family="'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', 'STSong', 'Palatino Linotype', 'Book Antiqua', serif" font-size="38" letter-spacing="8">JEFFERY ZHANG</text>
+    <text x="96" y="336" font-family="'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', 'STSong', 'Palatino Linotype', 'Book Antiqua', serif" font-size="104" font-weight="700">doriath</text>
+    <text x="96" y="412" font-family="'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', 'STSong', 'Palatino Linotype', 'Book Antiqua', serif" font-size="34" fill="#5b5f56">
+      写作、实验与长期留存的笔记。
     </text>
   </g>
 </svg>
-
