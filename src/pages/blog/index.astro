@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getPublishedBlogPosts } from "../../lib/blog";
+import { formatDate, withBase } from "../../lib/site";
+
+const posts = await getPublishedBlogPosts();
+---
+
+<BaseLayout
+  title="Blog"
+  description="Notes and essays published on Doriath."
+>
+  <section class="page-hero panel">
+    <p class="eyebrow">Blog</p>
+    <h1>Markdown-first writing.</h1>
+    <p class="lede">
+      Posts are authored in <code>src/content/blog</code> and compiled through Astro content
+      collections at build time.
+    </p>
+  </section>
+
+  <section class="panel">
+    <ul class="post-list" role="list">
+      {posts.map((post) => (
+        <li class="post-card">
+          <p class="post-meta">{formatDate(post.data.pubDate)}</p>
+          <h2>
+            <a href={withBase(`/blog/${post.id}/`)}>{post.data.title}</a>
+          </h2>
+          <p>{post.data.description}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>
+

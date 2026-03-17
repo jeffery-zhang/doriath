@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getPublishedBlogPosts } from "../lib/blog";
+import { formatDate, withBase } from "../lib/site";
+
+const posts = (await getPublishedBlogPosts()).slice(0, 3);
+---
+
+<BaseLayout
+  description="Jeffery Zhang's personal website, home for essays, project notes, and experiments on the web."
+>
+  <section class="hero panel">
+    <p class="eyebrow">Personal website</p>
+    <h1>Building a quiet corner of the internet for durable work.</h1>
+    <p class="lede">
+      Doriath is where Jeffery Zhang publishes writing, shares experiments, and keeps a
+      public record of ideas worth revisiting.
+    </p>
+    <div class="hero-actions">
+      <a class="button button-primary" href={withBase("/blog/")}>Read the blog</a>
+      <a class="button" href={withBase("/about/")}>About Jeffery</a>
+    </div>
+  </section>
+
+  <section class="home-grid">
+    <article class="panel">
+      <p class="eyebrow">What lives here</p>
+      <h2>Writing that ages well</h2>
+      <p>
+        The site is set up for source-authored pages and Markdown posts, so long-form notes
+        can stay in the repo beside the code that publishes them.
+      </p>
+    </article>
+    <article class="panel">
+      <p class="eyebrow">Current stack</p>
+      <h2>Static, typed, and deployable on GitHub Pages</h2>
+      <p>
+        Astro powers the pages, content collections compile the blog, and GitHub Actions
+        ships the generated site to Pages with a custom domain.
+      </p>
+    </article>
+  </section>
+
+  <section class="panel">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Latest writing</p>
+        <h2>Recent posts</h2>
+      </div>
+      <a class="section-link" href={withBase("/blog/")}>View all posts</a>
+    </div>
+    <ul class="post-list" role="list">
+      {posts.map((post) => (
+        <li class="post-card">
+          <p class="post-meta">{formatDate(post.data.pubDate)}</p>
+          <h3>
+            <a href={withBase(`/blog/${post.id}/`)}>{post.data.title}</a>
+          </h3>
+          <p>{post.data.description}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>
+

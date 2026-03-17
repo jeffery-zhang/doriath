@@ -1,0 +1,55 @@
+---
+import { render, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getPublishedBlogPosts } from "../../lib/blog";
+import { formatDate, withBase } from "../../lib/site";
+
+export async function getStaticPaths() {
+  const posts = await getPublishedBlogPosts();
+
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post }
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props as Props;
+const { Content } = await render(post);
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  ogType="article"
+>
+  <article class="panel prose article-shell">
+    <a class="back-link" href={withBase("/blog/")}>Back to blog</a>
+    <header class="article-header">
+      <p class="eyebrow">Blog post</p>
+      <h1>{post.data.title}</h1>
+      <p class="article-meta">
+        <time datetime={post.data.pubDate.toISOString()}>
+          {formatDate(post.data.pubDate)}
+        </time>
+        {post.data.updatedDate && (
+          <>
+            <span aria-hidden="true">·</span>
+            <span>
+              Updated{" "}
+              <time datetime={post.data.updatedDate.toISOString()}>
+                {formatDate(post.data.updatedDate)}
+              </time>
+            </span>
+          </>
+        )}
+      </p>
+      <p class="lede">{post.data.description}</p>
+    </header>
+    <Content />
+  </article>
+</BaseLayout>
+

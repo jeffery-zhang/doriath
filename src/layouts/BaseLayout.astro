@@ -1,0 +1,69 @@
+---
+import "../styles/global.css";
+import { SITE_DESCRIPTION, SITE_TITLE, withBase } from "../lib/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogType?: "website" | "article";
+  image?: string;
+}
+
+const {
+  title,
+  description = SITE_DESCRIPTION,
+  ogType = "website",
+  image
+} = Astro.props;
+
+const pageTitle = title ? `${title} | ${SITE_TITLE}` : SITE_TITLE;
+const site = Astro.site ?? new URL("https://jingo1.xyz");
+const canonicalURL = new URL(Astro.url.pathname, site);
+const socialImageURL = new URL(image ?? withBase("/social-card.svg"), site);
+const homeHref = withBase("/");
+const aboutHref = withBase("/about/");
+const blogHref = withBase("/blog/");
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#f4efe3" />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="sitemap" href={new URL(withBase("/sitemap-index.xml"), site)} />
+    <meta property="og:site_name" content={SITE_TITLE} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={socialImageURL} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageURL} />
+    <slot name="head" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="site-mark" href={homeHref}>Jeffery Zhang</a>
+        <nav class="site-nav" aria-label="Primary">
+          <a href={blogHref}>Blog</a>
+          <a href={aboutHref}>About</a>
+        </nav>
+      </header>
+      <main id="content">
+        <slot />
+      </main>
+      <footer class="site-footer">
+        <p>Built with Astro. Published at <a href="https://jingo1.xyz">jingo1.xyz</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>
+
