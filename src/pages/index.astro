@@ -4,41 +4,82 @@ import { getPublishedBlogPosts } from "../lib/blog";
 import { formatDate, withBase } from "../lib/site";
 
 const posts = (await getPublishedBlogPosts()).slice(0, 3);
+const [featured, ...rest] = posts;
 ---
 
 <BaseLayout
   description="Jeffery Zhang 的个人网站，收录随笔、项目笔记，以及关于 Web 的实验。"
 >
-  <section class="hero panel">
-    <p class="eyebrow">个人网站</p>
-    <h1>在互联网上，为能经得起时间的工作留一处安静角落。</h1>
-    <p class="lede">
-      doriath 是 Jeffery Zhang 发布文章、分享实验，并把值得回看的想法公开存档的地方。
-    </p>
-    <div class="hero-actions">
-      <a class="button button-primary" href={withBase("/blog/")}>阅读博客</a>
-      <a class="button" href={withBase("/about/")}>关于 Jeffery</a>
+  <section class="home-hero">
+    <div class="hero-shell panel">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">个人网站</p>
+          <h1>在互联网上，为能经得起时间的工作留一处安静角落。</h1>
+          <p class="lede">
+            doriath 是 Jeffery Zhang 发布文章、分享实验，并把值得回看的想法公开存档的地方。
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href={withBase("/blog/")}>阅读博客</a>
+            <a class="button" href={withBase("/about/")}>关于 Jeffery</a>
+          </div>
+        </div>
+
+        <aside class="hero-aside" aria-label="站点概览">
+          <div class="hero-aside-card">
+            <p class="hero-aside-label">写作方式</p>
+            <p class="hero-aside-title">Markdown 为先，源码为辅</p>
+            <p class="hero-aside-body">
+              博客文章写在 <code>src/content/blog</code>，而首页与关于页保留更高的布局控制。
+            </p>
+          </div>
+          <div class="hero-aside-card">
+            <p class="hero-aside-label">发布策略</p>
+            <p class="hero-aside-title">静态构建，低成本持续发布</p>
+            <p class="hero-aside-body">
+              Astro 输出静态站点，GitHub Actions 构建并部署到 Pages，自定义域名
+              <a href="https://jingo1.xyz">jingo1.xyz</a>。
+            </p>
+          </div>
+        </aside>
+      </div>
     </div>
   </section>
 
-  <section class="home-grid">
-    <article class="panel">
-      <p class="eyebrow">这里有什么</p>
-      <h2>经得起时间的写作</h2>
-      <p>
-        这个站点同时支持直接在源码中编写页面和用 Markdown 写博客，让长文笔记能和发布它们的代码一起留在仓库里。
-      </p>
-    </article>
-    <article class="panel">
-      <p class="eyebrow">当前技术栈</p>
-      <h2>静态、类型安全，并可部署到 GitHub Pages</h2>
-      <p>
-        页面由 Astro 驱动，博客通过 content collections 编译，GitHub Actions 将生成后的站点发布到 Pages，并挂上自定义域名。
-      </p>
-    </article>
+  <section class="home-bento" aria-label="站点内容">
+    <div class="bento-grid">
+      <article class="panel bento-tile bento-primary">
+        <p class="eyebrow">这里有什么</p>
+        <h2>经得起时间的写作</h2>
+        <p>
+          这个站点同时支持直接在源码中编写页面和用 Markdown 写博客，让长文笔记能和发布它们的代码一起留在仓库里。
+        </p>
+        <div class="bento-actions">
+          <a class="link-strong" href={withBase("/blog/")}>进入博客</a>
+          <span class="bento-sep" aria-hidden="true"></span>
+          <a class="link-muted" href={withBase("/about/")}>了解作者</a>
+        </div>
+      </article>
+
+      <article class="panel bento-tile bento-secondary">
+        <p class="eyebrow">组织方式</p>
+        <h2>页面与文章各就各位</h2>
+        <p>
+          重要的高信噪比页面直接写在 Astro 组件里；文章则通过内容集合编译，方便审阅与迭代。
+        </p>
+      </article>
+
+      <article class="panel bento-tile bento-tertiary">
+        <p class="eyebrow">当前技术栈</p>
+        <h2>Astro + GitHub Pages</h2>
+        <p>
+          静态、类型安全、可复现部署。把复杂度留在仓库里，把浏览体验留给读者。
+        </p>
+      </article>
+    </div>
   </section>
 
-  <section class="panel">
+  <section class="panel home-latest" aria-label="最新文章">
     <div class="section-heading">
       <div>
         <p class="eyebrow">最新写作</p>
@@ -46,16 +87,45 @@ const posts = (await getPublishedBlogPosts()).slice(0, 3);
       </div>
       <a class="section-link" href={withBase("/blog/")}>查看全部文章</a>
     </div>
-    <ul class="post-list" role="list">
-      {posts.map((post) => (
-        <li class="post-card">
-          <p class="post-meta">{formatDate(post.data.pubDate)}</p>
-          <h3>
-            <a href={withBase(`/blog/${post.id}/`)}>{post.data.title}</a>
+
+    {featured ? (
+      <div class="latest-grid">
+        <article class="latest-feature" aria-label="置顶文章">
+          <p class="post-meta">{formatDate(featured.data.pubDate)}</p>
+          <h3 class="latest-title">
+            <a href={withBase(`/blog/${featured.id}/`)}>{featured.data.title}</a>
           </h3>
-          <p>{post.data.description}</p>
-        </li>
-      ))}
-    </ul>
+          <p class="latest-desc">{featured.data.description}</p>
+          <div class="latest-actions">
+            <a class="button button-primary" href={withBase(`/blog/${featured.id}/`)}>
+              阅读这篇
+            </a>
+            <a class="button" href={withBase("/blog/")}>更多文章</a>
+          </div>
+        </article>
+
+        <div class="latest-list" aria-label="更多最近文章">
+          {rest.length ? (
+            <ul class="post-list compact" role="list">
+              {rest.map((post) => (
+                <li class="post-card compact">
+                  <p class="post-meta">{formatDate(post.data.pubDate)}</p>
+                  <h3>
+                    <a href={withBase(`/blog/${post.id}/`)}>{post.data.title}</a>
+                  </h3>
+                  <p>{post.data.description}</p>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p class="muted">
+              目前只有一篇文章。后续内容会持续补上。
+            </p>
+          )}
+        </div>
+      </div>
+    ) : (
+      <p class="muted">还没有发布文章。</p>
+    )}
   </section>
 </BaseLayout>
