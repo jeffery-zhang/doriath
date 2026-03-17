@@ -62,23 +62,27 @@ const [featured, ...rest] = posts;
         </div>
       </article>
 
-      <div class="info-stack">
-        <article class="panel info-secondary">
-          <p class="eyebrow">组织方式</p>
-          <h2>页面与文章各就各位</h2>
-          <p>
-            重要的高信噪比页面直接写在 Astro 组件里；文章则通过内容集合编译，方便审阅与迭代。
-          </p>
-        </article>
-
-        <article class="panel info-secondary">
-          <p class="eyebrow">当前技术栈</p>
-          <h2>Astro + GitHub Pages</h2>
-          <p>
-            静态、类型安全、可复现部署。把复杂度留在仓库里，把浏览体验留给读者。
-          </p>
-        </article>
-      </div>
+      <article class="panel info-side">
+        <p class="eyebrow">组织方式</p>
+        <h2>页面、文章与维护流程放在同一处</h2>
+        <p>
+          首页和关于页保留更直接的布局控制；博客文章走内容集合，让写作、审阅与发布都按同一套节奏推进。
+        </p>
+        <ul class="info-points" role="list">
+          <li>
+            <span class="info-point-title">页面</span>
+            <span class="info-point-body">需要精确编排的内容直接写在 Astro 组件里。</span>
+          </li>
+          <li>
+            <span class="info-point-title">文章</span>
+            <span class="info-point-body">长文仍然用 Markdown 编写，保留清晰的版本历史。</span>
+          </li>
+          <li>
+            <span class="info-point-title">维护</span>
+            <span class="info-point-body">站点结构和发布流程贴近仓库，减少额外的管理负担。</span>
+          </li>
+        </ul>
+      </article>
     </div>
   </section>
 
