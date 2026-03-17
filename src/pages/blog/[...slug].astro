@@ -1,8 +1,9 @@
 ---
 import { render, type CollectionEntry } from "astro:content";
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import Layout from "../../layouts/Layout.astro";
 import { getPublishedBlogPosts } from "../../lib/blog";
 import { formatDate, withBase } from "../../lib/site";
+import "../../styles/markdown.css";
 
 export async function getStaticPaths() {
   const posts = await getPublishedBlogPosts();
@@ -21,23 +22,24 @@ const { post } = Astro.props as Props;
 const { Content } = await render(post);
 ---
 
-<BaseLayout
+<Layout
   title={post.data.title}
   description={post.data.description}
   ogType="article"
 >
-  <article class="panel prose article-shell">
-    <a class="back-link" href={withBase("/blog/")}>返回博客</a>
-    <header class="article-header">
-      <p class="eyebrow">博客文章</p>
-      <h1>{post.data.title}</h1>
-      <p class="article-meta">
+  <article class="post-shell">
+    <a class="label-link post-back" href={withBase("/blog/")}>返回博客</a>
+
+    <header class="post-header grunge-panel line-grid">
+      <p class="section-kicker">博客文章</p>
+      <h1 class="display-title post-title">{post.data.title}</h1>
+      <p class="post-meta">
         <time datetime={post.data.pubDate.toISOString()}>
           {formatDate(post.data.pubDate)}
         </time>
         {post.data.updatedDate && (
           <>
-            <span aria-hidden="true">·</span>
+            <span aria-hidden="true">/</span>
             <span>
               更新于{" "}
               <time datetime={post.data.updatedDate.toISOString()}>
@@ -47,8 +49,20 @@ const { Content } = await render(post);
           </>
         )}
       </p>
-      <p class="lede">{post.data.description}</p>
+      <p class="post-description">{post.data.description}</p>
+      {post.data.tags.length > 0 && (
+        <ul class="post-tags" role="list" aria-label="标签">
+          {post.data.tags.map((tag) => (
+            <li class="post-tag">{tag}</li>
+          ))}
+        </ul>
+      )}
     </header>
-    <Content />
+
+    <section class="post-content-shell grunge-panel">
+      <div class="markdown-content post-content">
+        <Content />
+      </div>
+    </section>
   </article>
-</BaseLayout>
+</Layout>

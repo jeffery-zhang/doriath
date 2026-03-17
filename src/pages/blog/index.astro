@@ -1,35 +1,54 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import Layout from "../../layouts/Layout.astro";
 import { getPublishedBlogPosts } from "../../lib/blog";
 import { formatDate, withBase } from "../../lib/site";
 
 const posts = await getPublishedBlogPosts();
 ---
 
-<BaseLayout
+<Layout
   title="博客"
   description="发布在 doriath 上的笔记与文章。"
 >
-  <section class="page-hero panel">
-    <p class="eyebrow">博客</p>
-    <h1>以 Markdown 为先的写作。</h1>
-    <p class="lede">
-      文章写在 <code>src/content/blog</code> 中，并在构建时通过 Astro content
-      collections 编译。
-    </p>
+  <section class="blog-hero">
+    <article class="blog-hero__intro grunge-panel line-grid">
+      <p class="section-kicker">博客</p>
+      <h1 class="display-title blog-hero__title">以 Markdown 为先的写作。</h1>
+      <p class="blog-hero__headline">
+        文章保留在 <code>src/content/blog</code> 中，并在构建时通过 Astro content
+        collections 编译。
+      </p>
+    </article>
+
+    <article class="blog-hero__aside grunge-panel">
+      <p class="section-kicker">当前状态</p>
+      <div class="home-structure__list">
+        <p class="body-copy">这里列出所有已发布文章，顺序按发布时间倒排。</p>
+        <p class="body-copy">
+          路由保持为 <code>/blog/&lt;slug&gt;/</code>，方便继续使用现有内容文件。
+        </p>
+      </div>
+    </article>
   </section>
 
-  <section class="panel">
-    <ul class="post-list" role="list">
+  <section class="blog-list">
+    <ul class="blog-list__items" role="list">
       {posts.map((post) => (
-        <li class="post-card">
-          <p class="post-meta">{formatDate(post.data.pubDate)}</p>
-          <h2>
+        <li class="blog-card grunge-panel">
+          <p class="post-date">{formatDate(post.data.pubDate)}</p>
+          <h2 class="blog-card__title">
             <a href={withBase(`/blog/${post.id}/`)}>{post.data.title}</a>
           </h2>
-          <p>{post.data.description}</p>
+          <p class="body-copy blog-card__desc">{post.data.description}</p>
+          {post.data.tags.length > 0 && (
+            <ul class="post-tags" role="list" aria-label="标签">
+              {post.data.tags.map((tag) => (
+                <li class="post-tag">{tag}</li>
+              ))}
+            </ul>
+          )}
         </li>
       ))}
     </ul>
   </section>
-</BaseLayout>
+</Layout>

@@ -1,25 +1,49 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
-<BaseLayout
+<Layout
   title="关于"
   description="关于 Jeffery Zhang 以及 doriath 的用途。"
 >
-  <section class="page-hero panel narrow">
-    <p class="eyebrow">关于</p>
-    <h1>Jeffery Zhang</h1>
-    <p class="lede">
-      这个站点被搭成一套个人发布系统：一个小巧、快速、静态的主页，用来放不该被信息流吞没的随笔、变更记录和项目笔记。
-    </p>
+  <section class="about-hero">
+    <article class="about-hero__intro grunge-panel line-grid">
+      <p class="section-kicker">关于</p>
+      <h1 class="display-title about-hero__title">Jeffery Zhang</h1>
+      <p class="about-hero__headline">
+        这个站点被搭成一套个人发布系统：一个小巧、快速、静态的主页，用来放不该被信息流吞没的随笔、变更记录和项目笔记。
+      </p>
+    </article>
+
+    <article class="about-hero__aside grunge-panel">
+      <div class="home-structure__header">
+        <p class="section-kicker">定位</p>
+      </div>
+      <p class="body-copy">
+        doriath 不是单次展示页，而是一套能长期维护的写作与发布骨架。视觉上更直接，内容上更克制，结构上尽量少引入额外依赖。
+      </p>
+      <p class="body-copy">
+        首页与关于页继续使用 Astro 组件直接编排，博客文章仍然由 Markdown 内容集合提供。
+      </p>
+    </article>
   </section>
 
-  <section class="panel prose narrow">
-    <p>
-      doriath 有意保持简单。直接在 Astro 源码里编写的页面负责站内更重要的部分，Markdown 内容集合则让博客文章贴近仓库本身。这样整个站点都更容易编辑、审阅和部署。
-    </p>
-    <p>
-      你可以把这里替换成自己的简介、当前工作、兴趣和联系方式。结构已经搭好，之后更新时就能更专注于内容，而不是脚手架本身。
-    </p>
+  <section class="about-grid">
+    <article class="about-card grunge-panel">
+      <p class="section-kicker">为什么这样组织</p>
+      <h2 class="about-card__title">页面、文章与部署逻辑放在同一处</h2>
+      <p class="body-copy">
+        doriath 有意保持简单。源码页面负责站内更重要的部分，Markdown
+        内容集合让文章贴近仓库本身。这样整个站点都更容易编辑、审阅和部署。
+      </p>
+    </article>
+
+    <article class="about-card grunge-panel">
+      <p class="section-kicker">后续维护</p>
+      <h2 class="about-card__title">可以继续替换为自己的简介与近况</h2>
+      <p class="body-copy">
+        结构已经搭好。之后更新时，可以把精力放在简介、当前工作、兴趣和联系方式这些内容本身，而不是重新搭脚手架。
+      </p>
+    </article>
   </section>
-</BaseLayout>
+</Layout>

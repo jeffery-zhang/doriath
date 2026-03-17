@@ -1,0 +1,48 @@
+---
+import { withBase } from "../../lib/site";
+
+const year = new Date().getUTCFullYear();
+const links = [
+  { label: "首页", href: withBase("/") },
+  { label: "博客", href: withBase("/blog/") },
+  { label: "关于", href: withBase("/about/") }
+];
+---
+
+<footer class="site-footer">
+  <section class="footer-shell grunge-panel line-grid">
+    <div class="footer-column">
+      <p class="section-kicker">站点说明</p>
+      <h2 class="display-title footer-title">写作、代码与发布放在同一处。</h2>
+      <p class="body-copy">
+        doriath 使用 Astro 静态构建，博客内容保存在
+        <code>src/content/blog</code>，让写作记录和站点实现可以一起长期维护。
+      </p>
+    </div>
+
+    <div class="footer-columns">
+      <div class="footer-column">
+        <p class="section-kicker">导航</p>
+        <ul class="footer-list">
+          {links.map((link) => (
+            <li>
+              <a href={link.href} class="label-link">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <p class="section-kicker">维护方式</p>
+        <p class="body-copy">
+          页面保留定制布局，文章继续使用 Markdown 和内容集合，部署逻辑仍兼容 GitHub
+          Pages 与自定义域名。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <p class="footer-meta">Jeffery Zhang {year}</p>
+</footer>

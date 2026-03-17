@@ -1,0 +1,40 @@
+---
+import "../styles/global.css";
+
+import { getImage } from "astro:assets";
+import bg from "../assets/images/bg.jpg";
+import BaseHead from "../components/global/BaseHead.astro";
+import Footer from "../components/global/Footer.astro";
+import Navigation from "../components/global/Navigation.astro";
+import Wrapper from "../components/global/Wrapper.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogType?: "website" | "article";
+  image?: string;
+}
+
+const { title, description, ogType, image } = Astro.props;
+const backgroundImage = await getImage({ src: bg, format: "jpg" });
+---
+
+<!doctype html>
+<html lang="zh-CN" class="scroll-smooth">
+  <BaseHead
+    title={title}
+    description={description}
+    ogType={ogType}
+    image={image}
+  />
+  <body style={`background-image: url(${backgroundImage.src})`} class="site-background">
+    <div class="noise-overlay"></div>
+    <Wrapper>
+      <Navigation />
+      <main id="content" class="site-main">
+        <slot />
+      </main>
+      <Footer />
+    </Wrapper>
+  </body>
+</html>

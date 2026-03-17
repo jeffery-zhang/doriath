@@ -1,5 +1,5 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import Layout from "../layouts/Layout.astro";
 import { getPublishedBlogPosts } from "../lib/blog";
 import { formatDate, withBase } from "../lib/site";
 
@@ -7,130 +7,136 @@ const posts = (await getPublishedBlogPosts()).slice(0, 3);
 const [featured, ...rest] = posts;
 ---
 
-<BaseLayout
+<Layout
   description="Jeffery Zhang 的个人网站，收录随笔、项目笔记，以及关于 Web 的实验。"
 >
   <section class="home-hero">
-    <div class="panel hero-shell">
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">个人网站</p>
-          <h1>在互联网上，为能经得起时间的工作留一处安静角落。</h1>
-          <p class="lede">
-            doriath 是 Jeffery Zhang 发布文章、分享实验，并把值得回看的想法公开存档的地方。
+    <div class="home-hero__lead grunge-panel line-grid">
+      <p class="section-kicker">个人网站 / 源码驱动发布</p>
+      <div class="home-hero__copy">
+        <h1 class="display-title home-hero__title">Doriath</h1>
+        <p class="home-hero__headline">
+          在互联网上，为能经得起时间的工作留一处安静角落。
+        </p>
+        <p class="body-copy home-hero__description">
+          doriath 是 Jeffery Zhang
+          发布文章、记录实验，并把值得回看的想法公开存档的地方。页面保留源码级布局控制，长文继续放在
+          Markdown 内容集合里。
+        </p>
+      </div>
+
+      <div class="home-hero__actions">
+        <a class="action-chip action-chip--filled" href={withBase("/blog/")}>
+          阅读博客
+        </a>
+        <a class="action-chip" href={withBase("/about/")}>关于 Jeffery</a>
+      </div>
+    </div>
+
+    <aside class="home-hero__aside" aria-label="站点概览">
+      <article class="home-note grunge-panel">
+        <p class="section-kicker">写作方式</p>
+        <h2 class="home-note__title">Markdown 为先，源码为辅</h2>
+        <p class="body-copy">
+          博客文章保留在 <code>src/content/blog</code>，首页和关于页继续使用 Astro
+          组件直接编排。
+        </p>
+      </article>
+
+      <article class="home-note grunge-panel">
+        <p class="section-kicker">发布策略</p>
+        <h2 class="home-note__title">静态构建，低成本持续发布</h2>
+        <p class="body-copy">
+          站点仍然使用 Astro 输出静态文件，并保留 GitHub Pages 与自定义域名的部署逻辑。
+        </p>
+      </article>
+    </aside>
+  </section>
+
+  <section class="home-structure">
+    <article class="home-structure__primary grunge-panel">
+      <p class="section-kicker">这里有什么</p>
+      <h2 class="display-title home-structure__title">经得起时间的写作。</h2>
+      <p class="body-copy">
+        这个站点同时支持直接在源码中编写页面和用 Markdown
+        写博客，让长文笔记能和发布它们的代码一起留在仓库里。它不是信息流中的一次发声，而是可以反复回看的存档。
+      </p>
+    </article>
+
+    <article class="home-structure__details grunge-panel">
+      <div class="home-structure__header">
+        <p class="section-kicker">组织方式</p>
+        <span class="post-date">01</span>
+      </div>
+      <div class="home-structure__list">
+        <div class="home-structure__item">
+          <h3 class="home-structure__item-title">页面</h3>
+          <p class="body-copy">需要精确编排的内容直接写在 Astro 组件里。</p>
+        </div>
+        <div class="home-structure__item">
+          <h3 class="home-structure__item-title">文章</h3>
+          <p class="body-copy">长文继续用 Markdown 编写，保留清晰的版本历史。</p>
+        </div>
+        <div class="home-structure__item">
+          <h3 class="home-structure__item-title">维护</h3>
+          <p class="body-copy">
+            站点结构、内容模型与部署流程保留在同一个仓库里，减少额外的管理负担。
           </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href={withBase("/blog/")}>阅读博客</a>
-            <a class="button" href={withBase("/about/")}>关于 Jeffery</a>
-          </div>
-        </div>
-
-        <div class="hero-aside" aria-label="站点概览">
-          <div class="hero-note">
-            <p class="hero-note-kicker">写作方式</p>
-            <p class="hero-note-title">Markdown 为先，源码为辅</p>
-            <p class="hero-note-body">
-              博客文章写在 <code>src/content/blog</code>，而首页与关于页保留更高的布局控制。
-            </p>
-          </div>
-
-          <div class="hero-note">
-            <p class="hero-note-kicker">发布策略</p>
-            <p class="hero-note-title">静态构建，低成本持续发布</p>
-            <p class="hero-note-body">
-              Astro 输出静态站点，GitHub Actions 构建并部署到 Pages，自定义域名
-              <a href="https://jingo1.xyz">jingo1.xyz</a>。
-            </p>
-          </div>
         </div>
       </div>
-    </div>
+    </article>
   </section>
 
-  <section class="home-info" aria-label="站点内容">
-    <div class="info-grid">
-      <article class="panel info-primary">
-        <p class="eyebrow">这里有什么</p>
-        <h2>经得起时间的写作</h2>
-        <p>
-          这个站点同时支持直接在源码中编写页面和用 Markdown 写博客，让长文笔记能和发布它们的代码一起留在仓库里。
-        </p>
-        <div class="info-actions">
-          <a class="link-strong" href={withBase("/blog/")}>进入博客</a>
-          <span class="sep" aria-hidden="true"></span>
-          <a class="link-muted" href={withBase("/about/")}>了解作者</a>
-        </div>
-      </article>
-
-      <article class="panel info-side">
-        <p class="eyebrow">组织方式</p>
-        <h2>页面、文章与维护流程放在同一处</h2>
-        <p>
-          首页和关于页保留更直接的布局控制；博客文章走内容集合，让写作、审阅与发布都按同一套节奏推进。
-        </p>
-        <ul class="info-points" role="list">
-          <li>
-            <span class="info-point-title">页面</span>
-            <span class="info-point-body">需要精确编排的内容直接写在 Astro 组件里。</span>
-          </li>
-          <li>
-            <span class="info-point-title">文章</span>
-            <span class="info-point-body">长文仍然用 Markdown 编写，保留清晰的版本历史。</span>
-          </li>
-          <li>
-            <span class="info-point-title">维护</span>
-            <span class="info-point-body">站点结构和发布流程贴近仓库，减少额外的管理负担。</span>
-          </li>
-        </ul>
-      </article>
-    </div>
-  </section>
-
-  <section class="panel home-latest" aria-label="最新文章">
-    <div class="section-heading">
+  <section class="home-latest" aria-label="最新文章">
+    <div class="home-latest__header">
       <div>
-        <p class="eyebrow">最新写作</p>
-        <h2>最近文章</h2>
+        <p class="section-kicker">最新写作</p>
+        <h2 class="display-title home-latest__title">最近文章</h2>
       </div>
-      <a class="section-link" href={withBase("/blog/")}>查看全部文章</a>
+      <a class="label-link" href={withBase("/blog/")}>查看全部</a>
     </div>
 
     {featured ? (
-      <div class="latest-grid">
-        <article class="latest-feature" aria-label="置顶文章">
-          <p class="post-meta">{formatDate(featured.data.pubDate)}</p>
-          <h3 class="latest-title">
+      <div class="home-latest__grid">
+        <article class="feature-post grunge-panel" aria-label="置顶文章">
+          <p class="post-date">{formatDate(featured.data.pubDate)}</p>
+          <h3 class="display-title feature-post__title">
             <a href={withBase(`/blog/${featured.id}/`)}>{featured.data.title}</a>
           </h3>
-          <p class="latest-desc">{featured.data.description}</p>
-          <div class="latest-actions">
-            <a class="button button-primary" href={withBase(`/blog/${featured.id}/`)}>
+          <p class="body-copy feature-post__desc">{featured.data.description}</p>
+          <div class="feature-post__actions">
+            <a
+              class="action-chip action-chip--filled"
+              href={withBase(`/blog/${featured.id}/`)}
+            >
               阅读这篇
             </a>
-            <a class="button" href={withBase("/blog/")}>更多文章</a>
+            <a class="action-chip" href={withBase("/blog/")}>更多文章</a>
           </div>
         </article>
 
-        <div class="latest-list" aria-label="更多最近文章">
+        <div class="home-latest__list" aria-label="更多最近文章">
           {rest.length ? (
-            <ul class="post-list compact" role="list">
+            <ul class="compact-posts" role="list">
               {rest.map((post) => (
-                <li class="post-card compact">
-                  <p class="post-meta">{formatDate(post.data.pubDate)}</p>
-                  <h3>
+                <li class="compact-post grunge-panel">
+                  <p class="post-date">{formatDate(post.data.pubDate)}</p>
+                  <h3 class="compact-post__title">
                     <a href={withBase(`/blog/${post.id}/`)}>{post.data.title}</a>
                   </h3>
-                  <p>{post.data.description}</p>
+                  <p class="body-copy">{post.data.description}</p>
                 </li>
               ))}
             </ul>
           ) : (
-            <p class="muted">目前只有一篇文章。后续内容会持续补上。</p>
+            <p class="body-copy">目前只有一篇文章。后续内容会持续补上。</p>
           )}
         </div>
       </div>
     ) : (
-      <p class="muted">还没有发布文章。</p>
+      <div class="feature-post grunge-panel">
+        <p class="body-copy">还没有发布文章。</p>
+      </div>
     )}
   </section>
-</BaseLayout>
+</Layout>

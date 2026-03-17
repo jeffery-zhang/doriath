@@ -12,7 +12,7 @@
     "preview": "astro preview"
   },
   "devDependencies": {
-    "@astrojs/sitemap": "^3.5.1",
-    "astro": "^5.13.5"
+    "@astrojs/sitemap": "^3.7.1",
+    "astro": "^5.18.1"
   }
 }

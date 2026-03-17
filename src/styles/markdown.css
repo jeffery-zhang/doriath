@@ -1,0 +1,97 @@
+.markdown-content {
+  color: var(--color-base-900);
+}
+
+.markdown-content > :first-child {
+  margin-top: 0;
+}
+
+.markdown-content > :last-child {
+  margin-bottom: 0;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+  margin: 3.5rem 0 1rem;
+  font-family: var(--font-grunge);
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  line-height: 0.96;
+  color: var(--color-base-900);
+}
+
+.markdown-content h1 {
+  font-size: clamp(3rem, 4vw, 6rem);
+}
+
+.markdown-content h2 {
+  font-size: clamp(2.5rem, 3.2vw, 4.5rem);
+}
+
+.markdown-content h3 {
+  font-size: clamp(2rem, 2.6vw, 3.5rem);
+}
+
+.markdown-content h4 {
+  font-size: clamp(1.6rem, 2.2vw, 2.4rem);
+}
+
+.markdown-content p,
+.markdown-content li,
+.markdown-content blockquote {
+  font-size: 1.02rem;
+  line-height: 1.95;
+  color: var(--color-base-800);
+}
+
+.markdown-content p,
+.markdown-content ul,
+.markdown-content ol,
+.markdown-content pre,
+.markdown-content blockquote {
+  margin: 0 0 1.25rem;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  padding-left: 1.5rem;
+}
+
+.markdown-content li + li {
+  margin-top: 0.45rem;
+}
+
+.markdown-content a {
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.24em;
+}
+
+.markdown-content blockquote {
+  border-left: 3px solid
+    color-mix(in oklab, var(--color-base-900) 56%, transparent);
+  padding-left: 1rem;
+}
+
+.markdown-content code {
+  border: 1px solid color-mix(in oklab, var(--color-base-900) 24%, transparent);
+  background: color-mix(in oklab, var(--color-base-900) 10%, transparent);
+  padding: 0.12rem 0.4rem;
+  font-size: 0.92em;
+}
+
+.markdown-content pre {
+  overflow-x: auto;
+  border: 2px solid color-mix(in oklab, var(--color-base-900) 20%, transparent);
+  background: color-mix(in oklab, var(--color-base-100) 88%, transparent);
+  padding: 1rem 1.1rem;
+}
+
+.markdown-content pre code {
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
