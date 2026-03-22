@@ -1,4 +1,4 @@
-export const SITE_TITLE = "Jeffery Zhang";
+export const SITE_TITLE = "Jingo";
 export const SITE_DESCRIPTION =
   "一个用于写作、实验和长期留存笔记的个人站点。";
 

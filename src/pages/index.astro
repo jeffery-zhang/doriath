@@ -8,7 +8,7 @@ const [featured, ...rest] = posts;
 ---
 
 <Layout
-  description="Jeffery Zhang 的个人网站，收录随笔、项目笔记，以及关于 Web 的实验。"
+  description="Jingo 的个人网站，收录随笔、项目笔记，以及关于 Web 的实验。"
 >
   <section class="home-hero">
     <div class="home-hero__lead grunge-panel line-grid">
@@ -19,7 +19,7 @@ const [featured, ...rest] = posts;
           在互联网上，为能经得起时间的工作留一处安静角落。
         </p>
         <p class="body-copy home-hero__description">
-          doriath 是 Jeffery Zhang
+          doriath 是 Jingo
           发布文章、记录实验，并把值得回看的想法公开存档的地方。页面保留源码级布局控制，长文继续放在
           Markdown 内容集合里。
         </p>
@@ -29,28 +29,9 @@ const [featured, ...rest] = posts;
         <a class="action-chip action-chip--filled" href={withBase("/blog/")}>
           阅读博客
         </a>
-        <a class="action-chip" href={withBase("/about/")}>关于 Jeffery</a>
+        <a class="action-chip" href={withBase("/about/")}>关于 Jingo</a>
       </div>
     </div>
-
-    <aside class="home-hero__aside" aria-label="站点概览">
-      <article class="home-note grunge-panel">
-        <p class="section-kicker">写作方式</p>
-        <h2 class="home-note__title">Markdown 为先，源码为辅</h2>
-        <p class="body-copy">
-          博客文章保留在 <code>src/content/blog</code>，首页和关于页继续使用 Astro
-          组件直接编排。
-        </p>
-      </article>
-
-      <article class="home-note grunge-panel">
-        <p class="section-kicker">发布策略</p>
-        <h2 class="home-note__title">静态构建，低成本持续发布</h2>
-        <p class="body-copy">
-          站点仍然使用 Astro 输出静态文件，并保留 GitHub Pages 与自定义域名的部署逻辑。
-        </p>
-      </article>
-    </aside>
   </section>
 
   <section class="home-structure">
@@ -61,29 +42,6 @@ const [featured, ...rest] = posts;
         这个站点同时支持直接在源码中编写页面和用 Markdown
         写博客，让长文笔记能和发布它们的代码一起留在仓库里。它不是信息流中的一次发声，而是可以反复回看的存档。
       </p>
-    </article>
-
-    <article class="home-structure__details grunge-panel">
-      <div class="home-structure__header">
-        <p class="section-kicker">组织方式</p>
-        <span class="post-date">01</span>
-      </div>
-      <div class="home-structure__list">
-        <div class="home-structure__item">
-          <h3 class="home-structure__item-title">页面</h3>
-          <p class="body-copy">需要精确编排的内容直接写在 Astro 组件里。</p>
-        </div>
-        <div class="home-structure__item">
-          <h3 class="home-structure__item-title">文章</h3>
-          <p class="body-copy">长文继续用 Markdown 编写，保留清晰的版本历史。</p>
-        </div>
-        <div class="home-structure__item">
-          <h3 class="home-structure__item-title">维护</h3>
-          <p class="body-copy">
-            站点结构、内容模型与部署流程保留在同一个仓库里，减少额外的管理负担。
-          </p>
-        </div>
-      </div>
     </article>
   </section>
 
