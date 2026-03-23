@@ -1,6 +1,6 @@
 ---
-title: 别再让 AI 端出默认网页：GPT-5.4 的前端设计方法论
-description: 读 OpenAI《Designing delightful frontends with GPT-5.4》后，整理一套更实用的前端协作方法：先定约束，再给视觉参照，再让模型在可验证的系统里工作。
+title: 别再让 AI 端出默认网页
+description: 读 OpenAI《Designing delightful frontends with GPT-5.4》后，整理一套更实用的前端协作方法：先定约束，再给视觉参照，再把生成过程放进可验证的系统里。
 pubDate: 2026-03-23
 tags:
   - ai

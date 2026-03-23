@@ -1,6 +1,6 @@
 ---
-title: doriath 上线
-description: 说明这个站点为什么存在，以及为什么静态发布栈适合它。
+title: doriath 为什么要存在
+description: 这个站点为什么要做成今天这样，以及为什么静态发布栈适合它。
 pubDate: 2026-03-17
 tags:
   - astro

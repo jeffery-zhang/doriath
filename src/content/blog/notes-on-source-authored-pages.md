@@ -1,6 +1,6 @@
 ---
-title: 关于源码编写页面的笔记
-description: 首页和关于页保留在 Astro 组件里，而博客继续使用 Markdown。
+title: 为什么有些页面更适合直接写在源码里
+description: 首页和关于页继续保留在 Astro 组件里，而博客仍然交给 Markdown。
 pubDate: 2026-03-16
 tags:
   - astro
